@@ -46,7 +46,6 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-
   ) {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required]],
@@ -67,6 +66,7 @@ export class LoginComponent {
     this.authService.login(userName, password).subscribe({
       next: (response) => {
         console.log('Login successful', response);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.log('Login failed', error);
