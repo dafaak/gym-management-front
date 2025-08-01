@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,9 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { ThemeService } from '../../core/services/theme.service';
+
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +23,12 @@ import { ThemeService } from '../../core/services/theme.service';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    NgOptimizedImage
   ],
   templateUrl: './login.component.html',
   standalone: true,
+  providers: [AuthService],
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
@@ -33,10 +37,8 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading = false;
   showPassword = false;
-
-  // get currentTheme() {
-  //   return this.themeService.getCurrentTheme();
-  // }
+  authService = inject(AuthService);
+  router = inject(Router);
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -44,23 +46,32 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private auth: AuthService,
-    private themeService: ThemeService,
-    private router: Router
+
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const {email, password} = this.loginForm.value;
-      // Aquí puedes hacer una llamada HTTP real
-      // Simulamos login:
-      // this.auth.login('FAKE_TOKEN');
-      this.router.navigate(['/dashboard']);
+      const {userName: userName, password} = this.loginForm.value;
+      this.loginUser(userName, password);
+
     }
+  }
+
+  loginUser(userName: string, password: string) {
+
+    this.authService.login(userName, password).subscribe({
+      next: (response) => {
+        console.log('Login successful', response);
+      },
+      error: (error) => {
+        console.log('Login failed', error);
+      }
+    })
+
   }
 }

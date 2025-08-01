@@ -18,11 +18,7 @@ export class AppComponent implements OnInit {
   showPassword = false;
 
   ngOnInit() {
-    this.themeService.isDarkTheme$.subscribe(
-      next => {
-        console.log('isDarkTheme:', next)
-      }
-    )
+
   }
 
   constructor(private themeService: ThemeService) {

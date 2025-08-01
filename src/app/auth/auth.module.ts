@@ -11,7 +11,8 @@ import { LoginComponent } from "./login/login.component";
     CommonModule,
     AuthRoutingModule,
     LoginComponent,
-  ]
+  ],
+  providers: [] // Assuming authService is a service you want to provide
   , exports: []
 })
 export class AuthModule {

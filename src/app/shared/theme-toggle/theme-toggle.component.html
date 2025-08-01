@@ -1,7 +1,7 @@
 <button
   (click)="toggle()"
   class="flex items-center
-  w-14 h-8 bg-gray-300 dark:bg-gray-700 rounded-full p-1 transition-colors focus:outline-none select-none text-xl"
+  w-14 h-8 bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors focus:outline-none select-none text-xl"
   aria-label="Toggle Dark Mode"
 >
   <div
@@ -9,7 +9,7 @@
     [class.translate-x-6]="themeService.isDarkTheme$|async"
     [class.translate-x-0]="!(themeService.isDarkTheme$|async)"
   >
-    <span *ngIf="!(themeService.isDarkTheme$|async)">🌞</span>
+    <span *ngIf="!(themeService.isDarkTheme$|async)">☀️</span>
     <span *ngIf="themeService.isDarkTheme$|async">🌙</span>
   </div>
 </button>

@@ -1,40 +1,42 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors">
-  <div class="w-full max-w-md bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
-    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">Iniciar sesión</h2>
+<div class="min-h-screen flex items-center justify-center flex-col ">
+  <img ngSrc="assets/images/gym-icon.svg" alt="Logo" height="100" width="160">
+
+  <div class="w-full max-w-md transition-colors duration-300 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
+    <h2 class="text-2xl font-bold text-center transition-colors duration-300  text-gray-800 dark:text-gray-100 mb-6">Iniciar sesión</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Email -->
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Usuario</label>
+        <label class="block mb-1 text-sm font-medium transition-colors duration-300  text-gray-700 dark:text-gray-300">Usuario</label>
         <input
-          type="username"
-          formControlName="username"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text"
+          formControlName="userName"
+          class="w-full px-4 py-2 border transition-colors duration-300  border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="usuario"
         />
-        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid"
+        <div *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid"
              class="text-red-500 text-sm mt-1">
-          <div *ngIf="loginForm.get('username')?.errors?.['required']">El usuario es obligatorio.</div>
-          <div *ngIf="loginForm.get('username')?.errors?.['username']">Formato inválido.</div>
+          <div *ngIf="loginForm.get('userName')?.errors?.['required']">El usuario es obligatorio.</div>
+          <div *ngIf="loginForm.get('userName')?.errors?.['userName']">Formato inválido.</div>
         </div>
       </div>
 
       <!-- Password -->
       <!-- Password -->
       <div class="relative">
-        <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
+        <label class="block mb-1 text-sm font-medium transition-colors duration-300  text-gray-700 dark:text-gray-300">Contraseña</label>
         <input
           [type]="showPassword ? 'text' : 'password'"
           formControlName="password"
           placeholder="••••••••"
-          class="w-full px-4 py-2 pr-12 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-4 py-2 pr-12 border transition-colors duration-300  border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <!-- Ojo para mostrar/ocultar -->
         <button
           type="button"
           (click)="togglePasswordVisibility()"
-          class="absolute top-9 right-3 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+          class="absolute top-9 right-3 transition-colors duration-300  text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
           tabindex="-1"
         >
           @if (!showPassword) {
@@ -43,9 +45,9 @@
                  class="w-5 h-5">
               <!-- Ojo abierto -->
               <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M2.036 12.322a.75.75 0 010-.644C3.423 8.726 7.29 6 12 6s8.577 2.726 9.964 5.678a.75.75 0 010 .644C20.577 15.274 16.71 18 12 18s-8.577-2.943-9.964-5.678z" />
+                    d="M2.036 12.322a.75.75 0 010-.644C3.423 8.726 7.29 6 12 6s8.577 2.726 9.964 5.678a.75.75 0 010 .644C20.577 15.274 16.71 18 12 18s-8.577-2.943-9.964-5.678z"/>
               <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           } @else {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -53,7 +55,7 @@
                  class="w-5 h-5">
               <!-- Ojo tachado -->
               <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M3.98 8.223A10.477 10.477 0 001.5 12c1.5 3.6 5.25 6.75 10.5 6.75 1.828 0 3.57-.4 5.168-1.13M6.32 6.32A10.478 10.478 0 0112 5.25c5.25 0 9 3.15 10.5 6.75a10.477 10.477 0 01-1.507 2.362M6.32 6.32L3 3m3.32 3.32l11.36 11.36m0 0L21 21" />
+                    d="M3.98 8.223A10.477 10.477 0 001.5 12c1.5 3.6 5.25 6.75 10.5 6.75 1.828 0 3.57-.4 5.168-1.13M6.32 6.32A10.478 10.478 0 0112 5.25c5.25 0 9 3.15 10.5 6.75a10.477 10.477 0 01-1.507 2.362M6.32 6.32L3 3m3.32 3.32l11.36 11.36m0 0L21 21"/>
             </svg>
           }
 
